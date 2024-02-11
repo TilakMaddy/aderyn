@@ -22,6 +22,7 @@ use crate::{
 use serde::{Deserialize, Serialize};
 use std::{
     collections::BTreeMap,
+    default,
     error::Error,
     fmt::{self, Display},
     str::FromStr,
@@ -82,6 +83,7 @@ pub(crate) enum DetectorNamePool {
     // NOTE: `Undecided` will be the default name (for new bots).
     // If it's accepted, a new variant will be added to this enum before normalizing it in aderyn
     Undecided,
+    WeirdErc20NotHandled,
 }
 
 pub fn get_issue_detector_by_name(detector_name: &str) -> Box<dyn IssueDetector> {
@@ -116,6 +118,9 @@ pub fn get_issue_detector_by_name(detector_name: &str) -> Box<dyn IssueDetector>
         DetectorNamePool::UnsafeOzERC721Mint => Box::<UnsafeERC721MintDetector>::default(),
         DetectorNamePool::PushZeroOpcode => Box::<PushZeroOpcodeDetector>::default(),
         DetectorNamePool::ArbitraryTransferFrom => Box::<ArbitraryTransferFromDetector>::default(),
+        DetectorNamePool::WeirdErc20NotHandled => {
+            Box::<season1::weird_erc20_not_handled::WeirdErc20NotHandledDetector>::default()
+        }
         DetectorNamePool::Undecided => panic!("Undecided bots should't be invoked"),
     }
 }

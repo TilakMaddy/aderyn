@@ -4,7 +4,7 @@ use crate::{
     ast::NodeID,
     capture,
     context::{browser::GetParent, workspace_context::WorkspaceContext},
-    detect::detector::{IssueDetector, IssueSeverity},
+    detect::detector::{DetectorNamePool, IssueDetector, IssueSeverity},
 };
 
 #[derive(Default)]
@@ -46,7 +46,7 @@ impl IssueDetector for WeirdErc20NotHandledDetector {
     }
 
     fn name(&self) -> String {
-        "WeirdErc20NotHandledDetector".to_string()
+        DetectorNamePool::WeirdErc20NotHandled.to_string()
     }
 
     fn instances(&self) -> BTreeMap<(String, usize), NodeID> {
