@@ -1,6 +1,3 @@
-use serde::{Deserialize, Serialize};
-use strum::{Display, EnumCount, EnumIter, EnumString};
-
 use crate::{
     ast::NodeID,
     context::workspace_context::{ASTNode, WorkspaceContext},
@@ -19,14 +16,17 @@ use crate::{
             RequireWithStringDetector, UnindexedEventsDetector, UselessPublicFunctionDetector,
             ZeroAddressCheckDetector,
         },
+        season1,
     },
 };
+use serde::{Deserialize, Serialize};
 use std::{
     collections::BTreeMap,
     error::Error,
     fmt::{self, Display},
     str::FromStr,
 };
+use strum::{Display, EnumCount, EnumIter, EnumString};
 
 pub fn get_all_issue_detectors() -> Vec<Box<dyn IssueDetector>> {
     vec![
@@ -48,6 +48,8 @@ pub fn get_all_issue_detectors() -> Vec<Box<dyn IssueDetector>> {
         Box::<UnsafeERC721MintDetector>::default(),
         Box::<PushZeroOpcodeDetector>::default(),
         Box::<ArbitraryTransferFromDetector>::default(),
+        // Season 1
+        Box::<season1::weird_erc20_not_handled::WeirdErc20NotHandledDetector>::default(),
     ]
 }
 

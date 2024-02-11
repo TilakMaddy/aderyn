@@ -6,7 +6,7 @@ version = 3
 name = "aderyn"
 version = "0.0.13"
 dependencies = [
- "aderyn_driver",
+ "aderyn_driver 0.0.13",
  "clap",
  "serde",
  "serde_json",
@@ -21,6 +21,8 @@ dependencies = [
  "crossbeam-channel",
  "eyre",
  "ignore",
+ "my_bot1",
+ "my_bot2",
  "rayon",
  "semver",
  "serde",
@@ -32,10 +34,39 @@ dependencies = [
 ]
 
 [[package]]
+name = "aderyn_core"
+version = "0.0.13"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "2a48d8b0736d072c638e90611736b46a742bb34950c292814dd1edd6df2af37e"
+dependencies = [
+ "crossbeam",
+ "crossbeam-channel",
+ "eyre",
+ "ignore",
+ "rayon",
+ "semver",
+ "serde",
+ "serde_json",
+ "serde_repr",
+ "strum",
+ "toml",
+]
+
+[[package]]
 name = "aderyn_driver"
 version = "0.0.13"
 dependencies = [
- "aderyn_core",
+ "aderyn_core 0.0.13",
+ "rayon",
+]
+
+[[package]]
+name = "aderyn_driver"
+version = "0.0.13"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "5904739388d5e0ab0608ec7675ce5ab3c0d1098dc330ef7c924ad4665f226107"
+dependencies = [
+ "aderyn_core 0.0.13 (registry+https://github.com/rust-lang/crates.io-index)",
  "rayon",
 ]
 
@@ -43,7 +74,7 @@ dependencies = [
 name = "aderyn_py"
 version = "0.0.13"
 dependencies = [
- "aderyn_driver",
+ "aderyn_driver 0.0.13",
  "pyo3",
 ]
 
@@ -152,7 +183,7 @@ dependencies = [
 name = "bot_example"
 version = "0.0.13"
 dependencies = [
- "aderyn_driver",
+ "aderyn_driver 0.0.13",
  "clap",
 ]
 
@@ -648,7 +679,7 @@ dependencies = [
 name = "judgeops"
 version = "0.1.0"
 dependencies = [
- "aderyn_core",
+ "aderyn_core 0.0.13",
  "clap",
  "serde",
  "serde_json",
@@ -711,7 +742,27 @@ dependencies = [
 name = "my_bot"
 version = "0.1.0"
 dependencies = [
- "aderyn_driver",
+ "aderyn_driver 0.0.13",
+ "clap",
+ "serde",
+ "serde_json",
+]
+
+[[package]]
+name = "my_bot1"
+version = "0.1.0"
+dependencies = [
+ "aderyn_driver 0.0.13 (registry+https://github.com/rust-lang/crates.io-index)",
+ "clap",
+ "serde",
+ "serde_json",
+]
+
+[[package]]
+name = "my_bot2"
+version = "0.1.0"
+dependencies = [
+ "aderyn_driver 0.0.13 (registry+https://github.com/rust-lang/crates.io-index)",
  "clap",
  "serde",
  "serde_json",
