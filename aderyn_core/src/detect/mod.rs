@@ -4,6 +4,7 @@ pub mod low;
 pub mod medium;
 pub mod nc;
 pub mod reusable;
+pub mod season1;
 
 #[macro_export]
 macro_rules! capture {

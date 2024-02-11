@@ -1,6 +1,3 @@
-use serde::{Deserialize, Serialize};
-use strum::{Display, EnumCount, EnumIter, EnumString};
-
 use crate::{
     ast::NodeID,
     context::workspace_context::{ASTNode, WorkspaceContext},
@@ -19,14 +16,17 @@ use crate::{
             RequireWithStringDetector, UnindexedEventsDetector, UselessPublicFunctionDetector,
             ZeroAddressCheckDetector,
         },
+        season1,
     },
 };
+use serde::{Deserialize, Serialize};
 use std::{
     collections::BTreeMap,
     error::Error,
     fmt::{self, Display},
     str::FromStr,
 };
+use strum::{Display, EnumCount, EnumIter, EnumString};
 
 pub fn get_all_issue_detectors() -> Vec<Box<dyn IssueDetector>> {
     vec![
@@ -48,6 +48,8 @@ pub fn get_all_issue_detectors() -> Vec<Box<dyn IssueDetector>> {
         Box::<UnsafeERC721MintDetector>::default(),
         Box::<PushZeroOpcodeDetector>::default(),
         Box::<ArbitraryTransferFromDetector>::default(),
+        // Season 1
+        Box::<season1::weird_erc20_not_handled::WeirdErc20NotHandledDetector>::default(),
     ]
 }
 
@@ -80,6 +82,7 @@ pub(crate) enum DetectorNamePool {
     // NOTE: `Undecided` will be the default name (for new bots).
     // If it's accepted, a new variant will be added to this enum before normalizing it in aderyn
     Undecided,
+    WeirdErc20NotHandled,
 }
 
 pub fn get_issue_detector_by_name(detector_name: &str) -> Box<dyn IssueDetector> {
@@ -114,6 +117,9 @@ pub fn get_issue_detector_by_name(detector_name: &str) -> Box<dyn IssueDetector>
         DetectorNamePool::UnsafeOzERC721Mint => Box::<UnsafeERC721MintDetector>::default(),
         DetectorNamePool::PushZeroOpcode => Box::<PushZeroOpcodeDetector>::default(),
         DetectorNamePool::ArbitraryTransferFrom => Box::<ArbitraryTransferFromDetector>::default(),
+        DetectorNamePool::WeirdErc20NotHandled => {
+            Box::<season1::weird_erc20_not_handled::WeirdErc20NotHandledDetector>::default()
+        }
         DetectorNamePool::Undecided => panic!("Undecided bots should't be invoked"),
     }
 }

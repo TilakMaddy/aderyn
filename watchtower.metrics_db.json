@@ -136,6 +136,14 @@
       "experience": 5,
       "current_severity": "NC"
     },
+    "weird-erc20-not-handled": {
+      "detector_name": "weird-erc20-not-handled",
+      "true_positives": 5,
+      "false_positives": 1,
+      "trigger_count": 6,
+      "experience": 6,
+      "current_severity": "NC"
+    },
     "zero-address-check": {
       "detector_name": "zero-address-check",
       "true_positives": 5,
