@@ -1,0 +1,7 @@
+{
+    "negative_feedbacks": ["weird-erc20-not-handled"],
+    "positive_feedbacks": [],
+    "all_exposed_detectors" : [
+        "weird-erc20-not-handled"
+    ]
+}
