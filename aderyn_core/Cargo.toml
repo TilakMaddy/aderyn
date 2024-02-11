@@ -20,8 +20,6 @@ serde_json = "1.0.96"
 serde_repr = "0.1.12"
 strum = { version = "0.26", features = ["derive"] }
 toml = "0.8.2"
-my_bot1 = { path = "../../bot1" }
-my_bot2 = { path = "../../bot2" }
 
 [dev-dependencies]
 serial_test = "3.0.0"
