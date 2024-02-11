@@ -22,7 +22,6 @@ use crate::{
 use serde::{Deserialize, Serialize};
 use std::{
     collections::BTreeMap,
-    default,
     error::Error,
     fmt::{self, Display},
     str::FromStr,
